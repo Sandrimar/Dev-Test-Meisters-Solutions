@@ -57,4 +57,14 @@ public class TaskService {
         task.setStatus(TaskStatus.valueOf(status));
         repository.save(task);
     }
+
+    public void deleteTask(Long id) {
+        Task task = repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Task not found"));
+        if (task.getStatus() != TaskStatus.PENDING
+                || task.getCreationDate().isAfter(LocalDate.now().minusDays(5))) {
+            throw new IllegalStateException("Tasks can only be deleted if in status pending and older than 5 days");
+        }
+        repository.delete(task);
+    }
 }
