@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.util.List;
 
 @Service
 public class TaskService {
@@ -25,5 +26,10 @@ public class TaskService {
         }
         Task createdTask = repository.save(new Task(body));
         return new TaskResponseDTO(createdTask);
+    }
+
+    public List<TaskResponseDTO> getAllTasks() {
+        return repository.findAll().stream()
+                .map(TaskResponseDTO::new).toList();
     }
 }

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/tasks")
@@ -27,5 +28,11 @@ public class TaskController {
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
                 .buildAndExpand(createdTask.id()).toUri();
         return ResponseEntity.created(uri).body(createdTask);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<TaskResponseDTO>> getAllTasks() {
+        List<TaskResponseDTO> allTasks = service.getAllTasks();
+        return ResponseEntity.ok().body(allTasks);
     }
 }
