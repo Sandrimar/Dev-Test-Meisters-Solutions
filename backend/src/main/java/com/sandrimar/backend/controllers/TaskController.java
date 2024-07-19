@@ -4,6 +4,7 @@ import com.sandrimar.backend.dto.TaskRequestDTO;
 import com.sandrimar.backend.dto.TaskResponseDTO;
 import com.sandrimar.backend.services.TaskService;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -40,5 +41,11 @@ public class TaskController {
     public ResponseEntity<TaskResponseDTO> updateTask(@PathVariable Long id, @Valid @RequestBody TaskRequestDTO body) {
         TaskResponseDTO updatedTask = service.updateTask(id, body);
         return ResponseEntity.ok().body(updatedTask);
+    }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<Void> updateTaskStatus(@PathVariable Long id, @NotBlank @RequestParam(value = "status") String status) {
+        service.updateTaskStatus(id, status);
+        return ResponseEntity.ok().build();
     }
 }

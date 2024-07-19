@@ -45,4 +45,16 @@ public class TaskService {
         repository.save(task);
         return new TaskResponseDTO(task);
     }
+
+    public void updateTaskStatus(Long id, String status) {
+        try {
+            TaskStatus.valueOf(status);
+        } catch (IllegalArgumentException e) {
+            throw new IllegalStateException("Invalid Status");
+        }
+        Task task = repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Task not found"));
+        task.setStatus(TaskStatus.valueOf(status));
+        repository.save(task);
+    }
 }
