@@ -35,4 +35,10 @@ public class TaskController {
         List<TaskResponseDTO> allTasks = service.getAllTasks();
         return ResponseEntity.ok().body(allTasks);
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<TaskResponseDTO> updateTask(@PathVariable Long id, @Valid @RequestBody TaskRequestDTO body) {
+        TaskResponseDTO updatedTask = service.updateTask(id, body);
+        return ResponseEntity.ok().body(updatedTask);
+    }
 }
