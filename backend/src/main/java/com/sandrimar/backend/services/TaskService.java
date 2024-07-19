@@ -5,6 +5,7 @@ import com.sandrimar.backend.dto.TaskResponseDTO;
 import com.sandrimar.backend.model.Task;
 import com.sandrimar.backend.model.TaskStatus;
 import com.sandrimar.backend.repositories.TaskRepository;
+import com.sandrimar.backend.services.exceptions.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.time.DayOfWeek;
@@ -36,7 +37,7 @@ public class TaskService {
 
     public TaskResponseDTO updateTask(Long id, TaskRequestDTO body) {
         Task task = repository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Task not found"));
+                .orElseThrow(() -> new ResourceNotFoundException(id));
         if (task.getStatus() != TaskStatus.PENDING) {
             throw new IllegalStateException("Tasks can only be updated if in status pending");
         }
@@ -53,14 +54,14 @@ public class TaskService {
             throw new IllegalStateException("Invalid Status");
         }
         Task task = repository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Task not found"));
+                .orElseThrow(() -> new ResourceNotFoundException(id));
         task.setStatus(TaskStatus.valueOf(status));
         repository.save(task);
     }
 
     public void deleteTask(Long id) {
         Task task = repository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Task not found"));
+                .orElseThrow(() -> new ResourceNotFoundException(id));
         if (task.getStatus() != TaskStatus.PENDING
                 || task.getCreationDate().isAfter(LocalDate.now().minusDays(5))) {
             throw new IllegalStateException("Tasks can only be deleted if in status pending and older than 5 days");
