@@ -68,4 +68,10 @@ public class TaskService {
         }
         repository.delete(task);
     }
+
+    public List<TaskResponseDTO> findPendingTasks() {
+        return repository.findPendingTasks().stream()
+                .map(TaskResponseDTO::new)
+                .toList();
+    }
 }
