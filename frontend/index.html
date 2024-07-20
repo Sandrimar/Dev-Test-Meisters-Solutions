@@ -15,5 +15,123 @@
     <link rel="stylesheet" href="./css/style.css" />
     <script src="./js/script.js" defer></script>
   </head>
-  <body></body>
+  <body>
+    <div class="container">
+      <div class="container-content">
+        <h1 id="container-title">
+          Task Management <br />
+          System
+        </h1>
+        <div class="toolbar">
+          <div id="search-container">
+            <input
+              type="text"
+              id="search-input"
+              placeholder="Search tasks..."
+            />
+            <button id="clear-search-button">
+              <i class="fa-solid fa-delete-left"></i>
+            </button>
+          </div>
+          <button id="add-task-button">
+            <i class="fa-solid fa-circle-plus"></i>
+          </button>
+          <button id="send-email">
+            <i class="fa-solid fa-envelope"></i>
+          </button>
+          <select id="status-filter">
+            <option value="ALL">All</option>
+            <option value="IN_PROGRESS">In Progress</option>
+            <option value="PENDING">Pending</option>
+            <option value="COMPLETED">Completed</option>
+          </select>
+        </div>
+        <div id="task-list" class="task-list"></div>
+        <div id="success-message" class="success-message" style="display: none">
+          Success!
+        </div>
+        <div id="error-message" class="error-message" style="display: none">
+          <div id="error-header" class="error-header"></div>
+          <div id="error-body" class="error-body"></div>
+        </div>
+        <footer class="pagination">
+          <button id="prev-page" disabled>
+            <i class="fa-solid fa-circle-arrow-left"></i>
+          </button>
+          <span id="page-info"></span>
+          <button id="next-page">
+            <i class="fa-solid fa-circle-arrow-right"></i>
+          </button>
+        </footer>
+      </div>
+      <div id="popup-form" class="popup-form" style="display: none">
+        <form id="new-task-form">
+          <input
+            placeholder="Title"
+            type="text"
+            id="title"
+            name="title"
+            required
+          />
+          <br />
+          <textarea
+            placeholder="Description"
+            id="description"
+            name="description"
+            required
+          ></textarea>
+          <br />
+          <div>
+            <button type="submit">Create</button>
+            <button type="button" id="cancel-button" class="cancel-button">
+              Cancel
+            </button>
+          </div>
+        </form>
+      </div>
+      <div id="edit-popup-form" class="popup-form" style="display: none">
+        <form id="edit-task-form">
+          <input type="hidden" id="edit-task-id" />
+          <input type="text" id="edit-title" name="title" required />
+          <br />
+          <textarea
+            id="edit-description"
+            name="description"
+            required
+          ></textarea>
+          <br />
+          <div>
+            <button type="submit">Update</button>
+            <button type="button" id="edit-cancel-button" class="cancel-button">
+              Cancel
+            </button>
+          </div>
+        </form>
+      </div>
+      <div id="send-email-popup" class="popup-form" style="display: none">
+        <form id="send-email-form">
+          <div id="email-info">Daily reminder of pending tasks</div>
+          <input
+            placeholder="youremail@example.com"
+            type="email"
+            id="email"
+            name="email"
+            required
+            style="font-size: 16px; font-weight: normal"
+          />
+          <br />
+          <div>
+            <button type="submit">Send</button>
+            <button
+              type="button"
+              id="email-cancel-button"
+              class="cancel-button"
+            >
+              Cancel
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
 </html>

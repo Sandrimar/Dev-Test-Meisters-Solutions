@@ -2,4 +2,342 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: beige;
+    color: black;
+}
+
+.container-content {
+    border: 3px solid orangered;
+    display: flex;
+    flex-direction: column;
+    background-color: aliceblue;
+    border-radius: 5%;
+    text-align: center;
+    max-width: 500px;
+    min-width: 300px;
+    width: 90vh;
+    height: 90vh;
+    padding: 10px;
+
+    #container-title {
+        margin-bottom: 25px;
+        font-size: 40px;
+        font-weight: bolder;
+    }
+}
+
+.toolbar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+
+    button {
+        padding: 0;
+        border: none;
+        background: none;
+        cursor: pointer;
+    }
+
+    button:hover {
+        color: darkorange;
+    }
+
+    i {
+        font-size: 35px;
+    }
+}
+
+.task-list {
+    border: 2px solid orangered;
+    background-color: cornsilk;
+    margin-top: 20px;
+    height: 70%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-content: center;
+    justify-content: center;
+    border-radius: 10%;
+}
+
+.task {
+    max-width: calc(50% - 10px);
+    display: flex;
+    border: 1px solid orangered;
+    background-color: azure;
+    padding: 5px;
+    width: 100%;
+    text-align: left;
+    overflow: hidden;
+    flex-direction: column;
+    border-radius: 5%;
+    max-height: 150px;
+}
+
+.task:hover {
+    cursor: pointer;
+    transform: scale(1.1) translateY(-5px);
+}
+
+.task-header {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+}
+
+.title {
+    font-size: 1.5em;
+    font-weight: bold;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.status-and-button {
+    border-top: 1px solid orange;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    button {
+        font-size: 20px;
+        padding: 0;
+        border: none;
+        background: none;
+        cursor: pointer;
+    }
+}
+
+.status {
+    font-size: 0.9em;
+    width: auto;
+    height: 25px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: rgb(255, 217, 147);
+}
+
+.description {
+    margin-top: 5px;
+    font-size: 1.1em;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+.date {
+    text-align: end;
+    font-style: italic;
+    color: #888;
+    font-weight: bold;
+    margin-top: 2px;
+    font-size: 0.8em;
+}
+
+.pagination {
+    padding: 5px;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+
+    button {
+        font-size: 30px;
+        padding: 0;
+        border: none;
+        background: none;
+        cursor: pointer;
+    }
+
+    span {
+        font-size: 20px;
+        font-weight: bolder;
+        margin-left: 25px;
+        margin-right: 25px;
+    }
+}
+
+.placeholder {
+    width: 100%;
+    text-align: center;
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #888;
+    margin-top: 20px;
+}
+
+.popup-form {
+    display: none;
+    position: fixed;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid #000;
+    border-radius: 5%;
+    padding: 20px;
+    background-color: #f3fcc9;
+    z-index: 1000;
+    width: 300px;
+    max-height: 300px;
+}
+
+.popup-form form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    input {
+        font-size: 20px;
+        font-weight: bold;
+        border: none;
+    }
+
+    textarea {
+        font-size: 16px;
+        border: none;
+
+        min-height: 50px;
+        height: 70px;
+        max-height: 150px;
+        overflow-y: auto;
+        resize: vertical;
+    }
+
+    div {
+        display: flex;
+        justify-content: flex-end;
+        width: 100%;
+
+        button {
+            background-color: orangered;
+            color: white;
+            margin-left: 5px;
+            border: none;
+            padding: 5px;
+            border-radius: 15%;
+            min-width: 60px;
+        }
+
+        .cancel-button {
+            border: 1px solid orangered;
+            background-color: white;
+            color: black;
+        }
+    }
+
+    #email-info {
+        justify-content: start;
+        font-size: 12px;
+        margin-bottom: 5px;
+    }
+}
+
+.success-message {
+    display: none;
+    font: bolder;
+    background-color: #4caf50;
+    color: white;
+    padding: 10px;
+    position: fixed;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1001;
+    border-radius: 5px;
+    width: 100px;
+    height: 40px;
+}
+
+.error-message {
+    display: none;
+    position: fixed;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #bd3338;
+    color: white;
+    border-radius: 5px;
+    padding: 20px;
+    z-index: 1000;
+    text-wrap: balance;
+    max-width: 400px;
+}
+
+.error-header {
+    font-weight: bolder;
+    margin-bottom: 10px;
+}
+
+.error-body {
+    color: black;
+}
+
+button {
+    color: orangered;
+}
+
+.delete-button {
+    color: red;
+    i {
+        cursor: default;
+    }
+}
+
+.blurred .container-content {
+    filter: blur(5px);
+    pointer-events: none;
+}
+
+#status-filter {
+    background-color: orangered;
+    color: white;
+    border: none;
+    border-radius: 5%;
+    padding: 10px 15px;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: bold;
+    width: 120px;
+}
+
+#status-filter:hover {
+    background-color: orange;
+}
+
+#status-filter option {
+    background-color: orange;
+    color: white;
+}
+
+#search-container {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
+#search-input {
+    padding: 5px;
+    font-size: 16px;
+    border: 1px solid orangered;
+    border-radius: 5%;
+    margin-right: 5px;
+    width: 120px;
 }
